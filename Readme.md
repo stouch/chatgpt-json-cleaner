@@ -2,7 +2,8 @@
 
 Even using that kind of prompt : https://community.openai.com/t/getting-response-data-as-a-fixed-consistent-json-response/28471/4
 
-``` const prompt = `
+``` 
+const prompt = `
 pretend to be an expert child behavioural researcher.
 create a valid JSON array of objects for translating baby speak into English following this format:
 
@@ -14,7 +15,8 @@ create a valid JSON array of objects for translating baby speak into English fol
 "response": "what sound the parent should reply with"}]
 
 The JSON object:
-`.trim()```
+`.trim()
+```
 
 ... ChatGPT sometimes gives me really ugly JSON.
 
