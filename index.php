@@ -2,6 +2,11 @@
 
 function cleanJSON($json, $missingKeyName = 'details')
 {
+        $json = preg_replace('/\xc2\xa0/', ' ', $json); // clean spaces like &nbsp;
+        $json = preg_replace('/[\x00-\x1F\x7F-\xA0\xAD]/u', ' ', $json); // clean non printing chars
+
+        $json = str_replace(['“', '”', '`'], ['"', '"', '"'], $json);
+        
         $json = preg_replace('/\/\/([\wA-zÀ-ú\-\(\)\'\s\,\:\!\.\"]+)\n/s', '', $json); // Remove comments 
 
         $json = preg_replace('/[\s]+(\w+)[\s]*:/', '"$1":', $json); // clean: `  location: ... `
