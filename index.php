@@ -20,5 +20,7 @@ function cleanJSON($json, $missingKeyName = 'details')
 
         $json = preg_replace('/",[\s]+-/', '", "' . $missingKeyName . '": "', $json); // Ugly fix to handle bug ` ", ....  - Some value lorem ipsum", ... ` (missing json key before the value when it contains tirets)
 
+        $json = trim($json, ".\n\r\t\v\x00");
+        
         return $json;
 }
