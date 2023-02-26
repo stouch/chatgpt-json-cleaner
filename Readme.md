@@ -1,4 +1,4 @@
-# Some regexes to improve the JSON produced by ChatGPT
+# Some regexes to fix the broken JSON produced by ChatGPT
 
 Even using that kind of prompt : https://community.openai.com/t/getting-response-data-as-a-fixed-consistent-json-response/28471/4
 
