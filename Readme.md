@@ -20,4 +20,9 @@ The JSON object:
 
 ... ChatGPT sometimes gives me really ugly JSON.
 
+I typically got that kind of results (but many other cases) :
+
+![Screenshot from 2023-02-26 22-32-37](https://user-images.githubusercontent.com/17531455/221438616-0503e670-b62c-4984-9a68-8d6378b46b18.png)
+
+
 So I tried these regexes to improve it. Let me know what you use ! Thanks a lot.
