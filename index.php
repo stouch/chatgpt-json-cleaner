@@ -8,7 +8,8 @@ function cleanJSON($json, $missingKeyName = 'details')
         $json = str_replace(['“', '”', '`'], ['"', '"', '"'], $json);
         
         $json = preg_replace('/\/\/([\wA-zÀ-ú\-\(\)\'\s\,\:\!\.\"]+)\n/s', '', $json); // Remove comments 
-
+        $json = preg_replace('/\/\/([\wA-zÀ-ú\-\(\)\'\s\,\:\!\.]+)(\"|\})/s', '$1', $json); // Remove comments delimited with double quote of the next key or end of json
+        
         $json = preg_replace('/[\s]+(\w+)[\s]*:/', '"$1":', $json); // clean: `  location: ... `
         $json = preg_replace('/,[\s]+(\w+)"[\s]*:/', ',"$1":', $json); // clean: ` , ... location": ... `
         $json = preg_replace('/"[\s]*\+[\s]*"/', ' ', $json); // remove the : ` "  +  " `  in lists
