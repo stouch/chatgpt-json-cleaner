@@ -17,8 +17,10 @@ function cleanJSON($json, $missingKeyName = 'details')
         $json = preg_replace('/\"(\w+)\"[\s]*:([\wA-zÀ-ú\-\(\)\'\ \,\.]+)\}/', '"$1": "$2"}', $json); // clean: `  "location" : Paris  ... }  `
         $json = preg_replace('/[\s]+(\w+)[\s]*:([\wA-zÀ-ú\-\(\)\'\ \.]+)\,/', '"$1": "$2",', $json); // clean: `  location : Paris  ... ,   `
         $json = preg_replace('/\"(\w+)\"[\s]*:([\wA-zÀ-ú\-\(\)\'\ \.]+)\,/', '"$1": "$2",', $json); // clean: `  "location" : Paris  ... ,  `
-        $json = preg_replace('/",(([\s]+,)+)/', '",', $json); // Clean les bugs `  ",                              ,     , `
-
+       
+        $json = preg_replace('/([0-9]),\s+"/', '$1", "', $json); // Clean : ` 2001-01-02, ... ` (missing end quote after digits)
+        $json = preg_replace('/",(([\s]+["]*,)+)/', '",', $json); // Clean garbage séparated with comma (empty array element, sometimes with quotes) `  ",   ",     , `
+        
         $json = preg_replace('/",[\s]+-/', '", "' . $missingKeyName . '": "', $json); // Ugly fix to handle bug ` ", ....  - Some value lorem ipsum", ... ` (missing json key before the value when it contains tirets)
 
         $json = trim($json, ".\n\r\t\v\x00");
