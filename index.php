@@ -31,7 +31,7 @@ function cleanJSON($json, $missingKeyName = 'details')
 
         $hasUnfinishedValues = 1;
         while ($hasUnfinishedValues > 0) {
-            $json = preg_replace('/:[\s]*"([^"]+),[^"]*"(\w+)":/', ':"$1", "$2":', $json, -1, $hasUnfinishedValues); // Clean : ` "location": "92000,  "another": " `  or  ` "location": "Lorem ipsum,  "another": "... ` (missing end quote of a value)
+            $json = preg_replace('/:[\s]*"([^"}]+)(}|,[^"}]*"(\w+)":)/', ':"$1"$2', $json, -1, $hasUnfinishedValues); // Clean : ` "location": "Lorem ipsum,  "another": " `  or  ` "location": "Lorem ipsum } ` (missing end quote of a value)
         }
 
         $hasComments = 1;
