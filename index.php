@@ -8,8 +8,7 @@ function cleanJSON($json, $missingKeyName = 'details')
         $json = str_replace(['“', '”', '`'], '"', $json);
         $json = str_replace([':-)', ' :D ', ' :P ', ' :p '], '', $json); // We may find emojis in comments that gonna create ambiguities with properties semicol...
         $json = preg_replace('/\/\/([^"\/]+)[\s]{5,}/', '', $json); // Clean obvious comments  `  // Lorem ipsum         ` 
-        $json = preg_replace('/\/\/([\s]*Ex(a|e)*(mple)*)[\s]*:/', '// Ambigous comment', $json); // Pre-clean ambigous comments  `  // Example: ... ` for which we could not say if "Example" is a property
-        $steps[0] = $json;
+        $json = preg_replace('/\/\/([\s]*Ex(a|e)*(mple)*)[\s]*:/', '// Ambigous comment', $json); // Pre-clean ambigous comments  `  // Example: ... ` for which we could not say if "Example" is a property;
 
         $json = preg_replace('/""([\wA-zÀ-ú])/', '"$1', $json); // Clean : ` ""Lorem ipsum dolor sit amet.. `
         $json = preg_replace('/[\s+]\.[\s]*"/', ' , "', $json); // Clean  `  .  "location": ... ` When it outputs dot instead of comma
