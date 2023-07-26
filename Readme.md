@@ -37,3 +37,5 @@ Fill test.json.file
 ```bash
 php test.php
 ```
+
+If you want to debug a specific string, set your own string in `$content` at the top of `test.php`
